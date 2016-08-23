@@ -1,0 +1,16 @@
+{
+    "name": "IntellicarMaps",
+    "version": "1.0.0",
+    "description": "Demo app showing the use of Google Maps for Intellicar",
+    "main": "server.js",
+    "author": "Prateek",
+    "dependencies" : {
+        "express"    : "~4.7.2",
+        "mongoose"   : "~4.1.0",
+        "morgan"     : "~1.2.2",
+        "body-parser": "~1.5.2",
+        "jsonwebtoken": "^5.0.2",
+        "method-override": "~2.1.2",
+		"socket.io": "~1.4.8"
+    }
+}
