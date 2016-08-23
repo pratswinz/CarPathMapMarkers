@@ -1,0 +1,61 @@
+<div class="col-md-5 add-margin">
+
+    <!-- Creates Main Panel -->
+    <div class="panel panel-default">
+
+        <!-- Panel Title -->
+        <div class="panel-heading">
+            <h2 class="panel-title text-center">Join IntelliCar! <span class="glyphicon glyphicon-map-marker"></span></h2>
+        </div>
+
+        <!-- Panel Body -->
+        <div class="panel-body">
+
+            <!-- Creates Form (novalidate disables HTML validation, Angular will control) -->
+            <form name ="addForm" novalidate>
+
+                <!-- Text Boxes and Other User Inputs. Note ng-model binds the values to Angular $scope -->
+                <div class="form-group">
+                    <label for="carNumber">Car number <span class="badge">All fields required</span></label>
+                    <input type="text" class="form-control" id="carNumber" placeholder="KA 51 EM 4111" ng-model="formData.carNumber" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="pathHistory">Path History Data</label>
+					<textarea class="form-control" id="pathHistory" ng-model="formData.pathHistory"></textarea>
+                </div>
+				
+                <div class="form-group">
+                    <!-- Note RefreshLoc button tied to addCtrl. This requests a refresh of the HTML5 verified location. -->
+                    <label for="verified">HTML5 Verified Location? <span><button ng-click="refreshLoc()" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-refresh"></span></button></span></label>
+                    <input type="text" class="form-control" id="verified" placeholder= "Nope (Thanks for spamming my map...)" ng-model="formData.htmlverified" readonly>
+                </div>
+
+                <!-- Submit button. Note that its tied to createUser() function from addCtrl. Also note ng-disabled logic which prevents early submits.  -->
+                <button type="submit" class="btn btn-danger btn-block" ng-click="createUser()" ng-disabled="addForm.$invalid">Submit</button>
+            </form>
+        </div>
+		
+    </div>
+</div>
+<div class="col-md-3 add-margin">
+	<div class="addRandomCar"><button type="submit" class="btn btn-info btn-block" ng-click="createRandomUser()">Add Random car</button></div>
+</div>
+
+<script src="../lib/socket.io.js"></script>
+<script>
+	var socket = io('http://localhost');
+	socket.on('message', function (data) {
+		console.log(data);
+	});
+	 socket.on('connect', function () {
+        console.log('connected client');
+    });
+	socket.on('error', function (data) {
+        console.log(data || 'error');
+    });
+
+    socket.on('connect_failed', function (data) {
+        console.log(data || 'connect_failed');
+    });
+</script>
